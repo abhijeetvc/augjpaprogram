@@ -1,7 +1,6 @@
 package com.augjpademo.augjpaprogram.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -10,6 +9,18 @@ public class Student {
     private Integer id;
     private String name;
     private String city;
+
+    @ManyToOne
+    @JoinColumn(name="dept_id")
+    private Department department;
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public Integer getId() {
         return id;

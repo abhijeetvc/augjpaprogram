@@ -3,9 +3,7 @@ package com.augjpademo.augjpaprogram.controller;
 import com.augjpademo.augjpaprogram.model.Student;
 import com.augjpademo.augjpaprogram.repository.StudentInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class StudentController {
@@ -18,4 +16,14 @@ public class StudentController {
         studentInterface.save(student);
         return "Data Saved";
     }
+
+    @GetMapping(value="/getstu/{name}")
+    public Student saveStudent(@PathVariable String name){
+        System.out.println("-------"+name);
+        String name1="%"+name+"%";
+        Student s=studentInterface.findByNameLike(name1);
+        System.out.println(name1);
+        return s;
+    }
+
 }
